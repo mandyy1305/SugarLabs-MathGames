@@ -11,6 +11,7 @@ extends Control
 	$TopPanel/YellowButton
 ]
 @onready var status_label: Label = $TopPanel/StatusLabel
+@onready var back_button: Button = $TopPanel/BackButton
 
 # Game state
 var selected_color: int = 0  # Default to white/eraser
@@ -20,7 +21,7 @@ func _ready():
 	print("HELLOO")
 	# Connect button signals
 	regenerate_button.pressed.connect(_on_regenerate_pressed)
-	
+	back_button.pressed.connect(_on_back_button_pressed)
 	# Connect color button signals
 	for i in range(color_buttons.size()):
 		color_buttons[i].pressed.connect(_on_color_button_pressed.bind(i))
@@ -63,6 +64,10 @@ func _on_color_button_pressed(color_idx: int):
 			color_buttons[i].add_theme_stylebox_override("normal", create_selected_style())
 		else:
 			color_buttons[i].remove_theme_stylebox_override("normal")
+
+func _on_back_button_pressed():
+	# Return to main menu
+	get_tree().change_scene_to_file("res://MainMenu/MainMenu.tscn")
 
 func get_color_name(idx: int) -> String:
 	print("COLOR INDEX", idx)

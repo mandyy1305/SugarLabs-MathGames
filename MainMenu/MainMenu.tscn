@@ -1,0 +1,88 @@
+[gd_scene load_steps=4 format=3 uid="uid://bmcphpfevre3"]
+
+[ext_resource type="Script" uid="uid://bujy3gdkngxqt" path="res://MainMenu/MainMenu.gd" id="1_w3mdm"]
+[ext_resource type="Theme" uid="uid://brs1vvn1fjrh5" path="res://Themes/theme.tres" id="2_a3v6w"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uye6e"]
+bg_color = Color(0.0705882, 0.368627, 0.356863, 1)
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_w3mdm")
+
+[node name="Background" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_uye6e")
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_a3v6w")
+
+[node name="Title" type="Label" parent="UI"]
+layout_mode = 2
+offset_top = 127.0
+offset_right = 1152.0
+offset_bottom = 194.0
+size_flags_vertical = 6
+theme_override_font_sizes/font_size = 48
+text = "Math Games Collection"
+horizontal_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+offset_left = 431.0
+offset_top = 239.0
+offset_right = 731.0
+offset_bottom = 561.0
+size_flags_horizontal = 4
+size_flags_vertical = 3
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="FourColorMapButton" type="Button" parent="UI/VBoxContainer"]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Four Color Map Game"
+
+[node name="BrokenCalculatorButton" type="Button" parent="UI/VBoxContainer"]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Broken Calculator"
+
+[node name="QuitButton" type="Button" parent="UI/VBoxContainer"]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Quit"
+
+[node name="NotificationLabel" type="Label" parent="UI"]
+visible = false
+layout_mode = 2
+offset_left = 489.0
+offset_top = 592.0
+offset_right = 673.0
+offset_bottom = 618.0
+size_flags_horizontal = 4
+size_flags_vertical = 8
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 18
+text = "Notification message"
+horizontal_alignment = 1
