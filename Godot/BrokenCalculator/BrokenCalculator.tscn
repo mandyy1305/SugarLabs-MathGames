@@ -1,0 +1,320 @@
+[gd_scene load_steps=4 format=3 uid="uid://bnq8n7orwobs5"]
+
+[ext_resource type="Script" uid="uid://dokx2w47fv3ay" path="res://BrokenCalculator/BrokenCalculator.gd" id="1_mu4vv"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nrjpg"]
+bg_color = Color(0.0705882, 0.368627, 0.356863, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mjfot"]
+bg_color = Color(0.0705882, 0.368627, 0.356863, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.12549, 0.517647, 0.501961, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[node name="BrokenCalculator" type="Control" node_paths=PackedStringArray("new_game_button", "difficulty_button", "number_pad", "operators", "button_equals", "button_clear", "button_backspace", "eq_tracker_vboxcontainer", "target_display", "eq_counter", "eq_display", "toast", "back_button")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_mu4vv")
+new_game_button = NodePath("UI/TopBar/NewGameButton")
+difficulty_button = NodePath("UI/TopBar/DifficultyButton")
+number_pad = NodePath("UI/NumberPad/Numbers")
+operators = NodePath("UI/NumberPad/Operators")
+button_equals = NodePath("UI/NumberPad/ControlButtons/ButtonEquals")
+button_clear = NodePath("UI/NumberPad/ControlButtons/ButtonClear")
+button_backspace = NodePath("UI/NumberPad/ControlButtons/ButtonBackspace")
+eq_tracker_vboxcontainer = NodePath("UI/EquationTracker/VBoxContainer")
+target_display = NodePath("UI/TopBar/TargetDisplay")
+eq_counter = NodePath("UI/EquationCounter")
+eq_display = NodePath("UI/EquationDisplay")
+toast = NodePath("UI/Toast")
+back_button = NodePath("UI/BackButton")
+
+[node name="Background" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_nrjpg")
+
+[node name="UI" type="Node" parent="."]
+
+[node name="BackButton" type="Button" parent="UI"]
+custom_minimum_size = Vector2(100, 40)
+offset_right = 100.0
+offset_bottom = 40.0
+theme_override_colors/font_hover_color = Color(0.9, 0.9, 0.9, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(0.8, 0.8, 0.8, 1)
+theme_override_font_sizes/font_size = 16
+text = "Back"
+
+[node name="TopBar" type="HBoxContainer" parent="UI"]
+offset_left = 2.0
+offset_top = 31.0
+offset_right = 1154.0
+offset_bottom = 71.0
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="NewGameButton" type="Button" parent="UI/TopBar"]
+custom_minimum_size = Vector2(120, 40)
+layout_mode = 2
+theme_override_colors/font_hover_color = Color(0.9, 0.9, 0.9, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(0.8, 0.8, 0.8, 1)
+theme_override_font_sizes/font_size = 16
+text = "New Game"
+
+[node name="DifficultyButton" type="Button" parent="UI/TopBar"]
+custom_minimum_size = Vector2(150, 40)
+layout_mode = 2
+theme_override_colors/font_hover_color = Color(0.9, 0.9, 0.9, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(0.8, 0.8, 0.8, 1)
+theme_override_font_sizes/font_size = 16
+text = "Difficulty: Medium"
+
+[node name="TargetDisplay" type="Label" parent="UI/TopBar"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 20
+text = "Target: 42"
+horizontal_alignment = 1
+
+[node name="EquationCounter" type="Label" parent="UI"]
+offset_left = 3.0
+offset_top = 87.0
+offset_right = 1155.0
+offset_bottom = 113.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 18
+text = "Equations: 0/5"
+horizontal_alignment = 1
+
+[node name="EquationDisplay" type="Label" parent="UI"]
+custom_minimum_size = Vector2(0, 50)
+offset_top = 130.0
+offset_right = 1152.0
+offset_bottom = 180.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 24
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="NumberPad" type="Control" parent="UI"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 242.0
+offset_top = 274.0
+offset_right = 242.0
+offset_bottom = 274.0
+
+[node name="Numbers" type="GridContainer" parent="UI/NumberPad"]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 71.0
+offset_right = 203.0
+offset_bottom = 341.0
+theme_override_constants/h_separation = 10
+theme_override_constants/v_separation = 10
+columns = 3
+
+[node name="Button7" type="Button" parent="UI/NumberPad/Numbers"]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 24
+text = "7"
+
+[node name="Button8" type="Button" parent="UI/NumberPad/Numbers"]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 24
+text = "8"
+
+[node name="Button9" type="Button" parent="UI/NumberPad/Numbers"]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 24
+text = "9"
+
+[node name="Button4" type="Button" parent="UI/NumberPad/Numbers"]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 24
+text = "4"
+
+[node name="Button5" type="Button" parent="UI/NumberPad/Numbers"]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 24
+text = "5"
+
+[node name="Button6" type="Button" parent="UI/NumberPad/Numbers"]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 24
+text = "6"
+
+[node name="Button1" type="Button" parent="UI/NumberPad/Numbers"]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 24
+text = "1"
+
+[node name="Button2" type="Button" parent="UI/NumberPad/Numbers"]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 24
+text = "2"
+
+[node name="Button3" type="Button" parent="UI/NumberPad/Numbers"]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 24
+text = "3"
+
+[node name="Spacer1" type="Control" parent="UI/NumberPad/Numbers"]
+layout_mode = 2
+
+[node name="Button0" type="Button" parent="UI/NumberPad/Numbers"]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 24
+text = "0"
+
+[node name="Spacer2" type="Control" parent="UI/NumberPad/Numbers"]
+layout_mode = 2
+
+[node name="Operators" type="HBoxContainer" parent="UI/NumberPad"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 272.0
+offset_bottom = 62.0
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="ButtonPlus" type="Button" parent="UI/NumberPad/Operators"]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 24
+text = "+"
+
+[node name="ButtonMinus" type="Button" parent="UI/NumberPad/Operators"]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 24
+text = "-"
+
+[node name="ButtonMultiply" type="Button" parent="UI/NumberPad/Operators"]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 24
+text = "*"
+
+[node name="ButtonDivide" type="Button" parent="UI/NumberPad/Operators"]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 24
+text = "/"
+
+[node name="ControlButtons" type="VBoxContainer" parent="UI/NumberPad"]
+layout_mode = 0
+offset_left = 212.0
+offset_top = 71.0
+offset_right = 272.0
+offset_bottom = 271.0
+theme_override_constants/separation = 10
+
+[node name="ButtonClear" type="Button" parent="UI/NumberPad/ControlButtons"]
+custom_minimum_size = Vector2(50, 60)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 20
+text = "CE"
+
+[node name="ButtonBackspace" type="Button" parent="UI/NumberPad/ControlButtons"]
+custom_minimum_size = Vector2(50, 60)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 20
+text = "←"
+
+[node name="ButtonEquals" type="Button" parent="UI/NumberPad/ControlButtons"]
+custom_minimum_size = Vector2(50, 60)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 24
+text = "="
+
+[node name="EquationTracker" type="Panel" parent="UI"]
+custom_minimum_size = Vector2(300, 200)
+offset_left = 609.0
+offset_top = 307.0
+offset_right = 909.0
+offset_bottom = 507.0
+size_flags_horizontal = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_mjfot")
+
+[node name="Title" type="Label" parent="UI/EquationTracker"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 5.0
+offset_bottom = 31.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 18
+text = "Correct Equations"
+horizontal_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/EquationTracker"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = 35.0
+offset_right = -10.0
+offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Toast" type="Label" parent="UI"]
+visible = false
+offset_left = 492.0
+offset_top = 202.0
+offset_right = 657.0
+offset_bottom = 228.0
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 18
+text = "Message goes here"
+horizontal_alignment = 1
