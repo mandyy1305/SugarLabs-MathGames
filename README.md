@@ -2,7 +2,7 @@
 
 A collection of educational math games developed with Godot 4, designed to make learning mathematics fun and interactive.
 
-![Math Games Collection](https://github.com/user-attachments/assets/c62e1afb-e47d-4211-901c-449e647d1ff5)
+![Math Games Collection](https://github.com/user-attachments/assets/591ac29d-99a6-4ffd-92a2-67c23851040a)
 
 ---
 
@@ -35,6 +35,17 @@ A puzzle game where players need to reach a target number using a calculator wit
 - Target score system
 - Tracks equations solved
 - Toast messages added for vairous inputs. (Ex: Incorrect, Eq already used, Correct, etc.)
+
+### Fifteen Puzzle
+ A puzzle consisting of 15 squares, numbered 1 through 15, which can be slid horizontally or vertically within a four-by-four grid that has one empty space among its 16 locations. The object of the puzzle is to arrange the squares in numerical sequence using only the extra space in the grid to slide the numbered titles.
+
+![Fifteen](https://github.com/user-attachments/assets/f4cda57b-c702-4c3e-b167-aa425f987e01)
+
+**Features:**
+- Varying difficulty modes : Easy (3x3), Medium (4x4), Hard (5x5) 
+- Undo functionality 
+- Time taken & Number of moves tracker to keep it engaging
+- Visual slide animation on clicking a tile
 
 ##### More Games To Be Added Soon...
 

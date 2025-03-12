@@ -67,6 +67,12 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 24
 text = "Broken Calculator"
 
+[node name="FifteenPuzzle" type="Button" parent="UI/VBoxContainer"]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "15 Puzzle"
+
 [node name="NotificationLabel" type="Label" parent="UI"]
 visible = false
 layout_mode = 2
