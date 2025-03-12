@@ -1,0 +1,167 @@
+[gd_scene load_steps=2 format=3 uid="uid://drbkdgoxyn6ry"]
+
+[ext_resource type="Script" uid="uid://b5wdl0h2cr1t4" path="res://FifteenPuzzle/FifteenPuzzle.gd" id="1_v3xda"]
+
+[node name="15Puzzle" type="Control" node_paths=PackedStringArray("game_container", "moves_label", "timer_label", "timer", "win_panel", "difficulty_buttons", "status_label", "difficulty_label", "back_button")]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_v3xda")
+game_container = NodePath("GameContainer")
+moves_label = NodePath("UI/StatsContainer/MovesContainer/MovesValue")
+timer_label = NodePath("UI/StatsContainer/TimeContainer/TimeValue")
+timer = NodePath("Timer")
+win_panel = NodePath("WinPanel")
+difficulty_buttons = NodePath("UI/DifficultyContainer/DifficultyButtons")
+status_label = NodePath("WinPanel/VBoxContainer/StatsLabel")
+difficulty_label = NodePath("UI/DifficultyContainer/DifficultyLabel")
+back_button = NodePath("BackButton")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+color = Color(0.0980392, 0.345098, 0.313726, 1)
+
+[node name="Title" type="Label" parent="."]
+layout_mode = 0
+offset_left = 983.0
+offset_top = 15.0
+offset_right = 1143.0
+offset_bottom = 41.0
+theme_override_font_sizes/font_size = 18
+text = "15 Puzzle Game"
+
+[node name="BackButton" type="Button" parent="."]
+custom_minimum_size = Vector2(100, 40)
+offset_right = 100.0
+offset_bottom = 40.0
+theme_override_colors/font_hover_color = Color(0.9, 0.9, 0.9, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(0.8, 0.8, 0.8, 1)
+theme_override_font_sizes/font_size = 16
+text = "Back"
+
+[node name="GameContainer" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 355.0
+offset_top = 197.0
+offset_right = 355.0
+offset_bottom = 197.0
+
+[node name="UI" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_top = 60.0
+offset_right = 1152.0
+offset_bottom = 132.0
+theme_override_constants/separation = 100
+alignment = 1
+
+[node name="StatsContainer" type="VBoxContainer" parent="UI"]
+layout_mode = 2
+
+[node name="MovesContainer" type="HBoxContainer" parent="UI/StatsContainer"]
+layout_mode = 2
+
+[node name="MovesLabel" type="Label" parent="UI/StatsContainer/MovesContainer"]
+layout_mode = 2
+text = "Moves:"
+
+[node name="MovesValue" type="Label" parent="UI/StatsContainer/MovesContainer"]
+layout_mode = 2
+text = "0"
+
+[node name="TimeContainer" type="HBoxContainer" parent="UI/StatsContainer"]
+layout_mode = 2
+
+[node name="TimeLabel" type="Label" parent="UI/StatsContainer/TimeContainer"]
+layout_mode = 2
+text = "Time:"
+
+[node name="TimeValue" type="Label" parent="UI/StatsContainer/TimeContainer"]
+layout_mode = 2
+text = "0:00"
+
+[node name="ButtonsContainer" type="VBoxContainer" parent="UI"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="ShuffleButton" type="Button" parent="UI/ButtonsContainer"]
+layout_mode = 2
+text = "New Game"
+
+[node name="UndoButton" type="Button" parent="UI/ButtonsContainer"]
+layout_mode = 2
+text = "Undo"
+
+[node name="DifficultyContainer" type="VBoxContainer" parent="UI"]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="DifficultyLabel" type="Label" parent="UI/DifficultyContainer"]
+custom_minimum_size = Vector2(145, 0)
+layout_mode = 2
+text = "Difficulty: Medium"
+
+[node name="DifficultyButtons" type="HBoxContainer" parent="UI/DifficultyContainer"]
+layout_mode = 2
+
+[node name="EasyButton" type="Button" parent="UI/DifficultyContainer/DifficultyButtons"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Easy"
+
+[node name="MediumButton" type="Button" parent="UI/DifficultyContainer/DifficultyButtons"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Med"
+
+[node name="HardButton" type="Button" parent="UI/DifficultyContainer/DifficultyButtons"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Hard"
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="WinPanel" type="Panel" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 848.0
+offset_top = 444.0
+offset_right = 1148.0
+offset_bottom = 644.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="WinPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="WinLabel" type="Label" parent="WinPanel/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Puzzle Solved!"
+horizontal_alignment = 1
+
+[node name="StatsLabel" type="Label" parent="WinPanel/VBoxContainer"]
+layout_mode = 2
+text = "Moves: 0
+Time: 0:00"
+horizontal_alignment = 1
+
+[node name="PlayAgainButton" type="Button" parent="WinPanel/VBoxContainer"]
+layout_mode = 2
+text = "Play Again"
+
+[connection signal="pressed" from="UI/ButtonsContainer/ShuffleButton" to="." method="_on_shuffle_button_pressed"]
+[connection signal="pressed" from="UI/ButtonsContainer/UndoButton" to="." method="_on_undo_button_pressed"]
+[connection signal="pressed" from="UI/DifficultyContainer/DifficultyButtons/EasyButton" to="." method="_on_easy_button_pressed"]
+[connection signal="pressed" from="UI/DifficultyContainer/DifficultyButtons/MediumButton" to="." method="_on_medium_button_pressed"]
+[connection signal="pressed" from="UI/DifficultyContainer/DifficultyButtons/HardButton" to="." method="_on_hard_button_pressed"]
+[connection signal="pressed" from="WinPanel/VBoxContainer/PlayAgainButton" to="." method="_on_play_again_button_pressed"]
